@@ -1,0 +1,3 @@
+[submodule "tutum-docker-mysql"]
+	path = tutum-docker-mysql
+	url = https://github.com/aaronmlee/tutum-docker-mysql
