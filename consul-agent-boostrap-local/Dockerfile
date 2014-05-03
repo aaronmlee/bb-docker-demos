@@ -6,8 +6,8 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install  curl zip lib32z1 lib32ncurses5 lib32bz2-1.0 
 
 # Install consul
-RUN curl -s -L -O https://dl.bintray.com/mitchellh/consul/0.1.0_linux_386.zip
-RUN unzip 0.1.0_linux_386.zip
+RUN curl -s -L -O https://dl.bintray.com/mitchellh/consul/0.2.0_linux_386.zip
+RUN unzip 0.2.0_linux_386.zip
 RUN cp consul /usr/bin/consul
 RUN chmod 555 /usr/bin/consul
 
