@@ -15,5 +15,7 @@ chmod 755 $B2D
 
 $B2D init
 $B2D up
-$B2D ssh sudo -u root bash -c "'mkdir -p /tmp/varlog/supervisor; mkdir -p /tmp/varlog/mysql; mkdir -p /tmp/varlogchk/supervisor; chmod -R 777 /tmp/'"
+# Make /var/log paths on docker host that will be bound to each container (-v /path:/var/log), and install consul on docker host
+$B2D ssh sudo -u root bash -c "'mkdir -p $DEMOLOGS/{$JOIN,$MYSQL,$MONITOR}/supervisor; mkdir -p $DEMOLOGS/$MYSQL/mysql; chmod -R 777 $DEMOLOGS; curl -s -L -O https://dl.bintray.com/mitchellh/consul/0.2.0_linux_386.zip; unzip 0.2.0_linux_386.zip; cp consul /usr/bin; chmod 755 /usr/bin/consul'"
+mkdir -p $DEMOLOGS > /dev/null 2>&1
 
