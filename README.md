@@ -54,8 +54,7 @@ ______________
 
 Finally, you can shut the whole thing down and delete the boot2docker VM with `./stop_and_delete.sh`, or just shut the containers down with `./stop_containers.sh`, which will leave the docker host running and allow you to restart the containers. Note that you may get an error like *name xxx is already assigned to yyyy*, and if this is case you will need to perform a `docker rm yyyy` (where yyyy is the hash of the container) to set things right again. 
 
-Logging
-_______
+#Logging
 
 Logging is a little complicated in this setup, because there doesn't seem to be a great way to expose virtualbox host directories to docker containers, since that is a 3-pancake stack of AUFS filesystems, which doesn't work very well. Hence: 
 
