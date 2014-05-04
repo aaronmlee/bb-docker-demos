@@ -11,8 +11,7 @@ Once up and running, you can run the three Docker containers defined by the Dock
 
 3. consul-monitor: This container also uses supervisord to run an instance of consul, and a script that dumps the consul members and service catalog to a logfile (`$DEMOLOGS/supervisor/check_consul-stdout-*`). This allows you to prove that the service catalog is made available to the entire gossip pool. 
 
-Installation and Startup
-__________________________
+##Installation and Startup
 
 1. Install [VirtualBox](https://www.virtualbox.org/).
 
@@ -38,8 +37,7 @@ __________________________
 >> 7909e2d40d8c  172.17.0.3:8301  alive  role=node,dc=dc1,vsn=1,vsn_min=1,vsn_max=1
 >> 733d4e37638e  172.17.0.2:8301  alive  role=consul,dc=dc1,vsn=1,vsn_min=1,vsn_max=1,port=8300,bootstrap=1
 
-Once it's running
-_________________
+##Once it's running
 
 At this point you should feel free to inspect the HTTP and DNS APIs of consul from the docker host, i.e.:
 
@@ -49,12 +47,11 @@ At this point you should feel free to inspect the HTTP and DNS APIs of consul fr
 
 3. `./start_monitor.sh` also deploys the [consul UI](http://www.consul.io/intro/getting-started/ui.html) on the consul http port (8500), and exposes it to the docker host. I suggest you open up virtualbox, and port-forward 8500 to your physical host (the machine running virtualbox), so that you can pop a browser on [localhost:8500/ui](http://localhost:8500/ui) and play with it.
 
-Turning it off
-______________
+##Turning it off
 
 Finally, you can shut the whole thing down and delete the boot2docker VM with `./stop_and_delete.sh`, or just shut the containers down with `./stop_containers.sh`, which will leave the docker host running and allow you to restart the containers. Note that you may get an error like *name xxx is already assigned to yyyy*, and if this is case you will need to perform a `docker rm yyyy` (where yyyy is the hash of the container) to set things right again. 
 
-#Logging
+##Logging
 
 Logging is a little complicated in this setup, because there doesn't seem to be a great way to expose virtualbox host directories to docker containers, since that is a 3-pancake stack of AUFS filesystems, which doesn't work very well. Hence: 
 
