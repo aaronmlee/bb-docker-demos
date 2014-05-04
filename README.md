@@ -25,15 +25,15 @@ __________________________
 9. In the third window, run `./start_monitor.sh`. You should see supervisord report that consul and check_consul.sh are healthy. `start_monitor.sh` exposes all of the consul ports to the docker host, such that you can now access one consul agent from the docker host.
 10. Open a fourth terminal window, and cd to this repository root. Now run `. env.sh`, which will set the B2D (boot2docker executable) environment variable. Now run `$B2D ssh`, log in with password **tcuser**, and run `consul members`. If you can see output that looks like the following, you know things are probably working:
 
->> fa609389e13b  172.17.0.4:8301  alive  role=node,dc=dc1,vsn=1,vsn_min=1,vsn_max=1
->> 7909e2d40d8c  172.17.0.3:8301  alive  role=node,dc=dc1,vsn=1,vsn_min=1,vsn_max=1
->> 733d4e37638e  172.17.0.2:8301  alive  role=consul,dc=dc1,vsn=1,vsn_min=1,vsn_max=1,port=8300,bootstrap=1
+> fa609389e13b  172.17.0.4:8301  alive  role=node,dc=dc1,vsn=1,vsn_min=1,vsn_max=1
+> 7909e2d40d8c  172.17.0.3:8301  alive  role=node,dc=dc1,vsn=1,vsn_min=1,vsn_max=1
+> 733d4e37638e  172.17.0.2:8301  alive  role=consul,dc=dc1,vsn=1,vsn_min=1,vsn_max=1,port=8300,bootstrap=1
 
 At this point you should feel free to inspect the HTTP and DNS APIs of consul from the docker host, i.e.:
 
-   1. (after `$B2D ssh`'ing in): `curl localhost:8500/v1/catalog/services`: list all registered consul services. You should see mysql reported.
-   2. `curl localhost:8500/v1/agent/members`: list all nodes registered with this consul agent.
-   3. `./start_monitor.sh` also deploys the [consul UI](http://www.consul.io/intro/getting-started/ui.html) on the consul http port (8500), and exposes it to the docker host. I suggest you open up virtualbox, and port-forward 8500 to your physical host (the machine running virtualbox), so that you can pop a browser on [localhost:8500/ui](http://localhost:8500/ui) and play with it.
+1. (after `$B2D ssh`'ing in): `curl localhost:8500/v1/catalog/services`: list all registered consul services. You should see mysql reported.
+2. `curl localhost:8500/v1/agent/members`: list all nodes registered with this consul agent.
+3. `./start_monitor.sh` also deploys the [consul UI](http://www.consul.io/intro/getting-started/ui.html) on the consul http port (8500), and exposes it to the docker host. I suggest you open up virtualbox, and port-forward 8500 to your physical host (the machine running virtualbox), so that you can pop a browser on [localhost:8500/ui](http://localhost:8500/ui) and play with it.
 
 
 Finally, you can shut the whole thing down and delete the boot2docker VM with `./stop_and_delete.sh`, or just shut the containers down with `./stop_containers.sh`, which will leave the docker host running and allow you to restart the containers. Note that you may get an error like *name xxx is already assigned to yyyy*, and if this is case you will need to perform a `docker rm yyyy` (where yyyy is the hash of the container) to set things right again. 
