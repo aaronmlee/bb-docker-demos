@@ -5,12 +5,9 @@ This repository uses [boot2docker](https://github.com/boot2docker/boot2docker) t
 
 Once up and running, you can run the three Docker containers defined by the Dockerfiles in the subprojects - they are as follows:
 
-     1. consul-agent-bootstrap-local: This container runs consul in `consul agent -server -bootstrap` mode, 
-     which provisions a new gossip pool in the default (dc1) datacenter. The script *start_join.sh* both 
-     builds the docker container and starts it, so it should be run in a separate terminal window or put 
-     (nohup) in the background. It also must be run before any other container. 
+1. consul-agent-bootstrap-local: This container runs consul in `consul agent -server -bootstrap` mode, which provisions a new gossip pool in the default (dc1) datacenter. The script *start_join.sh* both builds the docker container and starts it, so it should be run in a separate terminal window or put (nohup) in the background. It also must be run before any other container. 
 
-     2. tutam-docker-mysql: This container uses supervisord to start an instance of mysql and a local consul agent, which is configured (via the consul config file *tutum-mysql-docker/consul.json*) to add a service to the consul catalog called *mysql* and a health check called *tutum-mysql-docker/check_mysql.sh*.
+2. tutam-docker-mysql: This container uses supervisord to start an instance of mysql and a local consul agent, which is configured (via the consul config file *tutum-mysql-docker/consul.json*) to add a service to the consul catalog called *mysql* and a health check called *tutum-mysql-docker/check_mysql.sh*.
 
      3. consul-monitor: This container also uses supervisord to run an instance of consul, and a script that dumps the consul members and service catalog to a logfile ($DEMOLOGS/supervisor/check_consul-stdout-*). This allows you to prove that the service catalog is made available to the entire gossip pool. 
 
