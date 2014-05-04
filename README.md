@@ -5,7 +5,7 @@ This repository uses [boot2docker](https://github.com/boot2docker/boot2docker) t
 
 Once up and running, you can run the three Docker containers defined by the Dockerfiles in the subprojects - they are as follows:
 
-     1. consul-agent-bootstrap-local: This container runs consul in "consul agent -server -bootstrap" mode, 
+     1. consul-agent-bootstrap-local: This container runs consul in `consul agent -server -bootstrap` mode, 
      which provisions a new gossip pool in the default (dc1) datacenter. The script *start_join.sh* both 
      builds the docker container and starts it, so it should be run in a separate terminal window or put 
      (nohup) in the background. It also must be run before any other container. 
